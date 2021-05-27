@@ -6,6 +6,9 @@
     "mode" : "allFunctionsWithinContext"
   },
   "initializationType": "STREAMLINED",
+  "asyncAwaitGeneration": {
+    "client": "EXPERIMENTAL"
+  },
   "modelOverride" : {
     "namedFieldValuesOverride" : {
       "birthYear" : "1985",

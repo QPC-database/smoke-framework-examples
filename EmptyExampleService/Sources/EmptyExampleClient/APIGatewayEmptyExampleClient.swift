@@ -18,6 +18,10 @@ import NIOHTTP1
 import AsyncHTTPClient
 import Logging
 
+#if compiler(>=5.5) && $AsyncAwait
+import _SmokeAWSHttpConcurrency
+#endif
+
 public enum EmptyExampleClientError: Swift.Error {
     case invalidEndpoint(String)
     case unsupportedPayload
@@ -206,4 +210,90 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
             reporting: self.invocationsReporting.listCustomersGet,
                                  errorType: EmptyExampleError.self)
     }
+
+    #if compiler(>=5.5) && $AsyncAwait
+    /**
+     Invokes the AddCustomerEmailAddress operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated AddCustomerEmailAddressRequest object being passed to this operation.
+     - Returns: The CustomerEmailAddressIdentity object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: concurrency, customerEmailAddressAlreadyExists, customerEmailAddressLimitExceeded, unknownResource.
+     */
+    public func addCustomerEmailAddress(
+            input: EmptyExampleModel.AddCustomerEmailAddressRequest) async throws -> EmptyExampleModel.CustomerEmailAddressIdentity {
+        return try await executeWithOutput(
+            httpClient: httpClient,
+            endpointPath: "/\(stage)" + EmptyExampleModelOperations.addCustomerEmailAddress.operationPath,
+            httpMethod: .PUT,
+            requestInput: AddCustomerEmailAddressOperationHTTPRequestInput(encodable: input),
+            operation: EmptyExampleModelOperations.addCustomerEmailAddress.rawValue,
+            reporting: self.invocationsReporting.addCustomerEmailAddress,
+                                 errorType: EmptyExampleError.self)
+    }
+
+    /**
+     Invokes the CreateCustomerPut operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated CreateCustomerRequest object being passed to this operation.
+     - Returns: The CreateCustomerPut200Response object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    public func createCustomerPut(
+            input: EmptyExampleModel.CreateCustomerRequest) async throws -> EmptyExampleModel.CreateCustomerPut200Response {
+        return try await executeWithOutput(
+            httpClient: httpClient,
+            endpointPath: "/\(stage)" + EmptyExampleModelOperations.createCustomerPut.operationPath,
+            httpMethod: .PUT,
+            requestInput: CreateCustomerPutOperationHTTPRequestInput(encodable: input),
+            operation: EmptyExampleModelOperations.createCustomerPut.rawValue,
+            reporting: self.invocationsReporting.createCustomerPut,
+                                 errorType: EmptyExampleError.self)
+    }
+
+    /**
+     Invokes the GetCustomerDetails operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated GetCustomerDetailsRequest object being passed to this operation.
+     - Returns: The CustomerAttributes object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    public func getCustomerDetails(
+            input: EmptyExampleModel.GetCustomerDetailsRequest) async throws -> EmptyExampleModel.CustomerAttributes {
+        return try await executeWithOutput(
+            httpClient: httpClient,
+            endpointPath: "/\(stage)" + EmptyExampleModelOperations.getCustomerDetails.operationPath,
+            httpMethod: .GET,
+            requestInput: GetCustomerDetailsOperationHTTPRequestInput(encodable: input),
+            operation: EmptyExampleModelOperations.getCustomerDetails.rawValue,
+            reporting: self.invocationsReporting.getCustomerDetails,
+                                 errorType: EmptyExampleError.self)
+    }
+
+    /**
+     Invokes the ListCustomersGet operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated ListCustomersGetRequest object being passed to this operation.
+     - Returns: The ListCustomersResponse object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    public func listCustomersGet(
+            input: EmptyExampleModel.ListCustomersGetRequest) async throws -> EmptyExampleModel.ListCustomersResponse {
+        return try await executeWithOutput(
+            httpClient: httpClient,
+            endpointPath: "/\(stage)" + EmptyExampleModelOperations.listCustomersGet.operationPath,
+            httpMethod: .GET,
+            requestInput: ListCustomersGetOperationHTTPRequestInput(encodable: input),
+            operation: EmptyExampleModelOperations.listCustomersGet.rawValue,
+            reporting: self.invocationsReporting.listCustomersGet,
+                                 errorType: EmptyExampleError.self)
+    }
+    #endif
 }
