@@ -13,6 +13,10 @@ import EmptyExampleOperations
 import SmokeOperations
 import SmokeOperationsHTTP1
 
+#if compiler(>=5.5) && $AsyncAwait
+import _SmokeOperationsHTTP1Concurrency
+#endif
+
 extension EmptyExampleModelOperations: OperationIdentity {}
 
 public extension EmptyExampleModelOperations {

@@ -143,6 +143,7 @@ public struct ThrowingEmptyExampleClient: EmptyExampleClientProtocol {
          Will be validated before being returned to caller.
            The possible errors are: concurrency, customerEmailAddressAlreadyExists, customerEmailAddressLimitExceeded, unknownResource.
      */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
     public func addCustomerEmailAddress(
             input: EmptyExampleModel.AddCustomerEmailAddressRequest) async throws -> EmptyExampleModel.CustomerEmailAddressIdentity {
         if let addCustomerEmailAddressEventLoopFutureAsyncOverride = addCustomerEmailAddressEventLoopFutureAsyncOverride {
@@ -164,6 +165,7 @@ public struct ThrowingEmptyExampleClient: EmptyExampleClientProtocol {
          Will be validated before being returned to caller.
            The possible errors are: unknownResource.
      */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
     public func createCustomerPut(
             input: EmptyExampleModel.CreateCustomerRequest) async throws -> EmptyExampleModel.CreateCustomerPut200Response {
         if let createCustomerPutEventLoopFutureAsyncOverride = createCustomerPutEventLoopFutureAsyncOverride {
@@ -185,6 +187,7 @@ public struct ThrowingEmptyExampleClient: EmptyExampleClientProtocol {
          Will be validated before being returned to caller.
            The possible errors are: unknownResource.
      */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
     public func getCustomerDetails(
             input: EmptyExampleModel.GetCustomerDetailsRequest) async throws -> EmptyExampleModel.CustomerAttributes {
         if let getCustomerDetailsEventLoopFutureAsyncOverride = getCustomerDetailsEventLoopFutureAsyncOverride {
@@ -206,6 +209,7 @@ public struct ThrowingEmptyExampleClient: EmptyExampleClientProtocol {
          Will be validated before being returned to caller.
            The possible errors are: unknownResource.
      */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
     public func listCustomersGet(
             input: EmptyExampleModel.ListCustomersGetRequest) async throws -> EmptyExampleModel.ListCustomersResponse {
         if let listCustomersGetEventLoopFutureAsyncOverride = listCustomersGetEventLoopFutureAsyncOverride {

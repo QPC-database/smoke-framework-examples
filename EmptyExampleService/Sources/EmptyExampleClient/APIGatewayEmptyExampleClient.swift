@@ -145,7 +145,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
             requestInput: AddCustomerEmailAddressOperationHTTPRequestInput(encodable: input),
             operation: EmptyExampleModelOperations.addCustomerEmailAddress.rawValue,
             reporting: self.invocationsReporting.addCustomerEmailAddress,
-                                 errorType: EmptyExampleError.self)
+            errorType: EmptyExampleError.self)
     }
 
     /**
@@ -166,7 +166,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
             requestInput: CreateCustomerPutOperationHTTPRequestInput(encodable: input),
             operation: EmptyExampleModelOperations.createCustomerPut.rawValue,
             reporting: self.invocationsReporting.createCustomerPut,
-                                 errorType: EmptyExampleError.self)
+            errorType: EmptyExampleError.self)
     }
 
     /**
@@ -187,7 +187,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
             requestInput: GetCustomerDetailsOperationHTTPRequestInput(encodable: input),
             operation: EmptyExampleModelOperations.getCustomerDetails.rawValue,
             reporting: self.invocationsReporting.getCustomerDetails,
-                                 errorType: EmptyExampleError.self)
+            errorType: EmptyExampleError.self)
     }
 
     /**
@@ -208,7 +208,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
             requestInput: ListCustomersGetOperationHTTPRequestInput(encodable: input),
             operation: EmptyExampleModelOperations.listCustomersGet.rawValue,
             reporting: self.invocationsReporting.listCustomersGet,
-                                 errorType: EmptyExampleError.self)
+            errorType: EmptyExampleError.self)
     }
 
     #if compiler(>=5.5) && $AsyncAwait
@@ -221,6 +221,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
          Will be validated before being returned to caller.
            The possible errors are: concurrency, customerEmailAddressAlreadyExists, customerEmailAddressLimitExceeded, unknownResource.
      */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
     public func addCustomerEmailAddress(
             input: EmptyExampleModel.AddCustomerEmailAddressRequest) async throws -> EmptyExampleModel.CustomerEmailAddressIdentity {
         return try await executeWithOutput(
@@ -230,7 +231,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
             requestInput: AddCustomerEmailAddressOperationHTTPRequestInput(encodable: input),
             operation: EmptyExampleModelOperations.addCustomerEmailAddress.rawValue,
             reporting: self.invocationsReporting.addCustomerEmailAddress,
-                                 errorType: EmptyExampleError.self)
+            errorType: EmptyExampleError.self)
     }
 
     /**
@@ -242,6 +243,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
          Will be validated before being returned to caller.
            The possible errors are: unknownResource.
      */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
     public func createCustomerPut(
             input: EmptyExampleModel.CreateCustomerRequest) async throws -> EmptyExampleModel.CreateCustomerPut200Response {
         return try await executeWithOutput(
@@ -251,7 +253,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
             requestInput: CreateCustomerPutOperationHTTPRequestInput(encodable: input),
             operation: EmptyExampleModelOperations.createCustomerPut.rawValue,
             reporting: self.invocationsReporting.createCustomerPut,
-                                 errorType: EmptyExampleError.self)
+            errorType: EmptyExampleError.self)
     }
 
     /**
@@ -263,6 +265,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
          Will be validated before being returned to caller.
            The possible errors are: unknownResource.
      */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
     public func getCustomerDetails(
             input: EmptyExampleModel.GetCustomerDetailsRequest) async throws -> EmptyExampleModel.CustomerAttributes {
         return try await executeWithOutput(
@@ -272,7 +275,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
             requestInput: GetCustomerDetailsOperationHTTPRequestInput(encodable: input),
             operation: EmptyExampleModelOperations.getCustomerDetails.rawValue,
             reporting: self.invocationsReporting.getCustomerDetails,
-                                 errorType: EmptyExampleError.self)
+            errorType: EmptyExampleError.self)
     }
 
     /**
@@ -284,6 +287,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
          Will be validated before being returned to caller.
            The possible errors are: unknownResource.
      */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
     public func listCustomersGet(
             input: EmptyExampleModel.ListCustomersGetRequest) async throws -> EmptyExampleModel.ListCustomersResponse {
         return try await executeWithOutput(
@@ -293,7 +297,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
             requestInput: ListCustomersGetOperationHTTPRequestInput(encodable: input),
             operation: EmptyExampleModelOperations.listCustomersGet.rawValue,
             reporting: self.invocationsReporting.listCustomersGet,
-                                 errorType: EmptyExampleError.self)
+            errorType: EmptyExampleError.self)
     }
     #endif
 }

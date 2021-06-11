@@ -94,6 +94,7 @@ public protocol EmptyExampleClientProtocol {
          Will be validated before being returned to caller.
            The possible errors are: concurrency, customerEmailAddressAlreadyExists, customerEmailAddressLimitExceeded, unknownResource.
      */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
     func addCustomerEmailAddress(
             input: EmptyExampleModel.AddCustomerEmailAddressRequest) async throws -> EmptyExampleModel.CustomerEmailAddressIdentity
 
@@ -106,6 +107,7 @@ public protocol EmptyExampleClientProtocol {
          Will be validated before being returned to caller.
            The possible errors are: unknownResource.
      */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
     func createCustomerPut(
             input: EmptyExampleModel.CreateCustomerRequest) async throws -> EmptyExampleModel.CreateCustomerPut200Response
 
@@ -118,6 +120,7 @@ public protocol EmptyExampleClientProtocol {
          Will be validated before being returned to caller.
            The possible errors are: unknownResource.
      */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
     func getCustomerDetails(
             input: EmptyExampleModel.GetCustomerDetailsRequest) async throws -> EmptyExampleModel.CustomerAttributes
 
@@ -130,6 +133,7 @@ public protocol EmptyExampleClientProtocol {
          Will be validated before being returned to caller.
            The possible errors are: unknownResource.
      */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
     func listCustomersGet(
             input: EmptyExampleModel.ListCustomersGetRequest) async throws -> EmptyExampleModel.ListCustomersResponse
     #endif
