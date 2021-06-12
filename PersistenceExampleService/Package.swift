@@ -30,7 +30,8 @@ let package = Package(
         .package(url: "https://github.com/amzn/smoke-framework.git", from: "2.7.0"),
         .package(url: "https://github.com/amzn/smoke-aws-credentials.git", from: "2.0.0"),
         .package(url: "https://github.com/amzn/smoke-aws.git", from: "2.0.0"),
-        .package(url: "https://github.com/amzn/smoke-dynamodb.git", from: "3.0.0-alpha.7"),
+        .package(url: "https://github.com/amzn/smoke-dynamodb.git", .branch("async_await_queries")),
+        .package(url: "https://github.com/apple/swift-nio.git", from: "2.28.0"),
         ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -49,12 +50,15 @@ let package = Package(
                 .target(name: "PersistenceExampleOperations"),
                 .product(name: "SmokeOperationsHTTP1", package: "smoke-framework"),
                 .product(name: "SmokeOperationsHTTP1Server", package: "smoke-framework"),
+                .product(name: "_SmokeOperationsHTTP1Concurrency", package: "smoke-framework"),
             ]),
         .target(
             name: "PersistenceExampleClient", dependencies: [
                 .target(name: "PersistenceExampleModel"),
                 .product(name: "SmokeOperationsHTTP1", package: "smoke-framework"),
                 .product(name: "SmokeAWSHttp", package: "smoke-aws"),
+                .product(name: "_SmokeAWSHttpConcurrency", package: "smoke-aws"),
+                .product(name: "_NIOConcurrency", package: "swift-nio"),
             ]),
         .target(
             name: "PersistenceExampleService", dependencies: [

@@ -2,6 +2,10 @@
   "baseName" : "PersistenceExample",
   "modelFilePath" : "Swagger.yaml",
   "generationType" : "serverUpdate",
+  "asyncAwaitGeneration": {
+    "client": "EXPERIMENTAL",
+    "server": "EXPERIMENTAL"
+  },
   "operationStubGenerationRule" : {
     "mode" : "allFunctionsWithinContext"
   },

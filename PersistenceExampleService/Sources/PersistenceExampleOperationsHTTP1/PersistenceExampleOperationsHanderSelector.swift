@@ -13,6 +13,10 @@ import PersistenceExampleOperations
 import SmokeOperations
 import SmokeOperationsHTTP1
 
+#if compiler(>=5.5) && $AsyncAwait
+import _SmokeOperationsHTTP1Concurrency
+#endif
+
 extension PersistenceExampleModelOperations: OperationIdentity {}
 
 public extension PersistenceExampleModelOperations {

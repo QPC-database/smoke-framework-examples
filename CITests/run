@@ -1,31 +1,18 @@
 #!/bin/bash
 set -e
 
-ONLY_RUN_SWIFT_LINT=$1
-USE_APT_GET=$2
+APPLICATION=$1
+ONLY_RUN_SWIFT_LINT=$2
+USE_APT_GET=$3
 
 if [ "$USE_APT_GET" == 'yes' ]; then
     apt-get update
     apt-get -y install libssl-dev libz-dev
 fi
 
-## PersistenceExampleService Build
 cd /package
 
-cd PersistenceExampleService
-
-if [ "$ONLY_RUN_SWIFT_LINT" == 'yes' ]; then
-    ls
-    swiftlint
-else
-    swift build -c release
-    swift test
-fi
-
-## EmptyExampleService Build
-cd /package
-
-cd EmptyExampleService
+cd $APPLICATION
 
 if [ "$ONLY_RUN_SWIFT_LINT" == 'yes' ]; then
     ls

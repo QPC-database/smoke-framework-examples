@@ -13,6 +13,10 @@ import SmokeAWSCore
 import SmokeHTTPClient
 import NIO
 
+#if compiler(>=5.5) && $AsyncAwait
+import _NIOConcurrency
+#endif
+
 /**
  Mock Client for the PersistenceExample service that by default always throws from its methods.
  */
@@ -128,4 +132,94 @@ public struct ThrowingPersistenceExampleClient: PersistenceExampleClientProtocol
         
         return promise.futureResult
     }
+
+    #if compiler(>=5.5) && $AsyncAwait
+    /**
+     Invokes the AddCustomerEmailAddress operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated AddCustomerEmailAddressRequest object being passed to this operation.
+     - Returns: The CustomerEmailAddressIdentity object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: concurrency, customerEmailAddressAlreadyExists, customerEmailAddressLimitExceeded, unknownResource.
+     */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
+    public func addCustomerEmailAddress(
+            input: PersistenceExampleModel.AddCustomerEmailAddressRequest) async throws -> PersistenceExampleModel.CustomerEmailAddressIdentity {
+        if let addCustomerEmailAddressEventLoopFutureAsyncOverride = addCustomerEmailAddressEventLoopFutureAsyncOverride {
+            return try await addCustomerEmailAddressEventLoopFutureAsyncOverride(input).get()
+        }
+
+        let promise = self.eventLoop.makePromise(of: CustomerEmailAddressIdentity.self)
+        promise.fail(error)
+        
+        return try await promise.futureResult.get()
+    }
+
+    /**
+     Invokes the CreateCustomerPut operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated CreateCustomerRequest object being passed to this operation.
+     - Returns: The CreateCustomerPut200Response object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
+    public func createCustomerPut(
+            input: PersistenceExampleModel.CreateCustomerRequest) async throws -> PersistenceExampleModel.CreateCustomerPut200Response {
+        if let createCustomerPutEventLoopFutureAsyncOverride = createCustomerPutEventLoopFutureAsyncOverride {
+            return try await createCustomerPutEventLoopFutureAsyncOverride(input).get()
+        }
+
+        let promise = self.eventLoop.makePromise(of: CreateCustomerPut200Response.self)
+        promise.fail(error)
+        
+        return try await promise.futureResult.get()
+    }
+
+    /**
+     Invokes the GetCustomerDetails operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated GetCustomerDetailsRequest object being passed to this operation.
+     - Returns: The CustomerAttributes object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
+    public func getCustomerDetails(
+            input: PersistenceExampleModel.GetCustomerDetailsRequest) async throws -> PersistenceExampleModel.CustomerAttributes {
+        if let getCustomerDetailsEventLoopFutureAsyncOverride = getCustomerDetailsEventLoopFutureAsyncOverride {
+            return try await getCustomerDetailsEventLoopFutureAsyncOverride(input).get()
+        }
+
+        let promise = self.eventLoop.makePromise(of: CustomerAttributes.self)
+        promise.fail(error)
+        
+        return try await promise.futureResult.get()
+    }
+
+    /**
+     Invokes the ListCustomersGet operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated ListCustomersGetRequest object being passed to this operation.
+     - Returns: The ListCustomersResponse object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
+    public func listCustomersGet(
+            input: PersistenceExampleModel.ListCustomersGetRequest) async throws -> PersistenceExampleModel.ListCustomersResponse {
+        if let listCustomersGetEventLoopFutureAsyncOverride = listCustomersGetEventLoopFutureAsyncOverride {
+            return try await listCustomersGetEventLoopFutureAsyncOverride(input).get()
+        }
+
+        let promise = self.eventLoop.makePromise(of: ListCustomersResponse.self)
+        promise.fail(error)
+        
+        return try await promise.futureResult.get()
+    }
+    #endif
 }

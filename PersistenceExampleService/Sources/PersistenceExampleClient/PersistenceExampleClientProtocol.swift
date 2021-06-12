@@ -25,6 +25,16 @@ public protocol PersistenceExampleClientProtocol {
             _ input: PersistenceExampleModel.GetCustomerDetailsRequest) -> EventLoopFuture<PersistenceExampleModel.CustomerAttributes>
     typealias ListCustomersGetEventLoopFutureAsyncType = (
             _ input: PersistenceExampleModel.ListCustomersGetRequest) -> EventLoopFuture<PersistenceExampleModel.ListCustomersResponse>
+    #if compiler(>=5.5) && $AsyncAwait
+    typealias AddCustomerEmailAddressFunctionType = (
+            _ input: PersistenceExampleModel.AddCustomerEmailAddressRequest) async throws -> PersistenceExampleModel.CustomerEmailAddressIdentity
+    typealias CreateCustomerPutFunctionType = (
+            _ input: PersistenceExampleModel.CreateCustomerRequest) async throws -> PersistenceExampleModel.CreateCustomerPut200Response
+    typealias GetCustomerDetailsFunctionType = (
+            _ input: PersistenceExampleModel.GetCustomerDetailsRequest) async throws -> PersistenceExampleModel.CustomerAttributes
+    typealias ListCustomersGetFunctionType = (
+            _ input: PersistenceExampleModel.ListCustomersGetRequest) async throws -> PersistenceExampleModel.ListCustomersResponse
+    #endif
 
     /**
      Invokes the AddCustomerEmailAddress operation returning immediately with an `EventLoopFuture` that will be completed at a later time.
@@ -73,4 +83,58 @@ public protocol PersistenceExampleClientProtocol {
      */
     func listCustomersGet(
             input: PersistenceExampleModel.ListCustomersGetRequest) -> EventLoopFuture<PersistenceExampleModel.ListCustomersResponse>
+
+    #if compiler(>=5.5) && $AsyncAwait
+    /**
+     Invokes the AddCustomerEmailAddress operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated AddCustomerEmailAddressRequest object being passed to this operation.
+     - Returns: The CustomerEmailAddressIdentity object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: concurrency, customerEmailAddressAlreadyExists, customerEmailAddressLimitExceeded, unknownResource.
+     */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
+    func addCustomerEmailAddress(
+            input: PersistenceExampleModel.AddCustomerEmailAddressRequest) async throws -> PersistenceExampleModel.CustomerEmailAddressIdentity
+
+    /**
+     Invokes the CreateCustomerPut operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated CreateCustomerRequest object being passed to this operation.
+     - Returns: The CreateCustomerPut200Response object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
+    func createCustomerPut(
+            input: PersistenceExampleModel.CreateCustomerRequest) async throws -> PersistenceExampleModel.CreateCustomerPut200Response
+
+    /**
+     Invokes the GetCustomerDetails operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated GetCustomerDetailsRequest object being passed to this operation.
+     - Returns: The CustomerAttributes object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
+    func getCustomerDetails(
+            input: PersistenceExampleModel.GetCustomerDetailsRequest) async throws -> PersistenceExampleModel.CustomerAttributes
+
+    /**
+     Invokes the ListCustomersGet operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated ListCustomersGetRequest object being passed to this operation.
+     - Returns: The ListCustomersResponse object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
+    func listCustomersGet(
+            input: PersistenceExampleModel.ListCustomersGetRequest) async throws -> PersistenceExampleModel.ListCustomersResponse
+    #endif
 }

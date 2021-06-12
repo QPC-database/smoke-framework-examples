@@ -18,6 +18,10 @@ import NIOHTTP1
 import AsyncHTTPClient
 import Logging
 
+#if compiler(>=5.5) && $AsyncAwait
+import _SmokeAWSHttpConcurrency
+#endif
+
 public enum PersistenceExampleClientError: Swift.Error {
     case invalidEndpoint(String)
     case unsupportedPayload
@@ -141,7 +145,7 @@ public struct APIGatewayPersistenceExampleClient<InvocationReportingType: HTTPCl
             requestInput: AddCustomerEmailAddressOperationHTTPRequestInput(encodable: input),
             operation: PersistenceExampleModelOperations.addCustomerEmailAddress.rawValue,
             reporting: self.invocationsReporting.addCustomerEmailAddress,
-                                 errorType: PersistenceExampleError.self)
+            errorType: PersistenceExampleError.self)
     }
 
     /**
@@ -162,7 +166,7 @@ public struct APIGatewayPersistenceExampleClient<InvocationReportingType: HTTPCl
             requestInput: CreateCustomerPutOperationHTTPRequestInput(encodable: input),
             operation: PersistenceExampleModelOperations.createCustomerPut.rawValue,
             reporting: self.invocationsReporting.createCustomerPut,
-                                 errorType: PersistenceExampleError.self)
+            errorType: PersistenceExampleError.self)
     }
 
     /**
@@ -183,7 +187,7 @@ public struct APIGatewayPersistenceExampleClient<InvocationReportingType: HTTPCl
             requestInput: GetCustomerDetailsOperationHTTPRequestInput(encodable: input),
             operation: PersistenceExampleModelOperations.getCustomerDetails.rawValue,
             reporting: self.invocationsReporting.getCustomerDetails,
-                                 errorType: PersistenceExampleError.self)
+            errorType: PersistenceExampleError.self)
     }
 
     /**
@@ -204,6 +208,96 @@ public struct APIGatewayPersistenceExampleClient<InvocationReportingType: HTTPCl
             requestInput: ListCustomersGetOperationHTTPRequestInput(encodable: input),
             operation: PersistenceExampleModelOperations.listCustomersGet.rawValue,
             reporting: self.invocationsReporting.listCustomersGet,
-                                 errorType: PersistenceExampleError.self)
+            errorType: PersistenceExampleError.self)
     }
+
+    #if compiler(>=5.5) && $AsyncAwait
+    /**
+     Invokes the AddCustomerEmailAddress operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated AddCustomerEmailAddressRequest object being passed to this operation.
+     - Returns: The CustomerEmailAddressIdentity object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: concurrency, customerEmailAddressAlreadyExists, customerEmailAddressLimitExceeded, unknownResource.
+     */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
+    public func addCustomerEmailAddress(
+            input: PersistenceExampleModel.AddCustomerEmailAddressRequest) async throws -> PersistenceExampleModel.CustomerEmailAddressIdentity {
+        return try await executeWithOutput(
+            httpClient: httpClient,
+            endpointPath: "/\(stage)" + PersistenceExampleModelOperations.addCustomerEmailAddress.operationPath,
+            httpMethod: .PUT,
+            requestInput: AddCustomerEmailAddressOperationHTTPRequestInput(encodable: input),
+            operation: PersistenceExampleModelOperations.addCustomerEmailAddress.rawValue,
+            reporting: self.invocationsReporting.addCustomerEmailAddress,
+            errorType: PersistenceExampleError.self)
+    }
+
+    /**
+     Invokes the CreateCustomerPut operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated CreateCustomerRequest object being passed to this operation.
+     - Returns: The CreateCustomerPut200Response object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
+    public func createCustomerPut(
+            input: PersistenceExampleModel.CreateCustomerRequest) async throws -> PersistenceExampleModel.CreateCustomerPut200Response {
+        return try await executeWithOutput(
+            httpClient: httpClient,
+            endpointPath: "/\(stage)" + PersistenceExampleModelOperations.createCustomerPut.operationPath,
+            httpMethod: .PUT,
+            requestInput: CreateCustomerPutOperationHTTPRequestInput(encodable: input),
+            operation: PersistenceExampleModelOperations.createCustomerPut.rawValue,
+            reporting: self.invocationsReporting.createCustomerPut,
+            errorType: PersistenceExampleError.self)
+    }
+
+    /**
+     Invokes the GetCustomerDetails operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated GetCustomerDetailsRequest object being passed to this operation.
+     - Returns: The CustomerAttributes object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
+    public func getCustomerDetails(
+            input: PersistenceExampleModel.GetCustomerDetailsRequest) async throws -> PersistenceExampleModel.CustomerAttributes {
+        return try await executeWithOutput(
+            httpClient: httpClient,
+            endpointPath: "/\(stage)" + PersistenceExampleModelOperations.getCustomerDetails.operationPath,
+            httpMethod: .GET,
+            requestInput: GetCustomerDetailsOperationHTTPRequestInput(encodable: input),
+            operation: PersistenceExampleModelOperations.getCustomerDetails.rawValue,
+            reporting: self.invocationsReporting.getCustomerDetails,
+            errorType: PersistenceExampleError.self)
+    }
+
+    /**
+     Invokes the ListCustomersGet operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated ListCustomersGetRequest object being passed to this operation.
+     - Returns: The ListCustomersResponse object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    @available(macOS 9999, iOS 9999, watchOS 9999, tvOS 9999, *)
+    public func listCustomersGet(
+            input: PersistenceExampleModel.ListCustomersGetRequest) async throws -> PersistenceExampleModel.ListCustomersResponse {
+        return try await executeWithOutput(
+            httpClient: httpClient,
+            endpointPath: "/\(stage)" + PersistenceExampleModelOperations.listCustomersGet.operationPath,
+            httpMethod: .GET,
+            requestInput: ListCustomersGetOperationHTTPRequestInput(encodable: input),
+            operation: PersistenceExampleModelOperations.listCustomersGet.rawValue,
+            reporting: self.invocationsReporting.listCustomersGet,
+            errorType: PersistenceExampleError.self)
+    }
+    #endif
 }

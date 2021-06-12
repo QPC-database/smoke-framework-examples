@@ -2,14 +2,20 @@
 matrix:
   include:
     - os: linux
-      dist: xenial
+      dist: bionic
       sudo: required
       services: docker
-      env: DOCKER_IMAGE_TAG=swiftlang/swift:nightly-5.5-amazonlinux2 ONLY_RUN_SWIFT_LINT=no USE_APT_GET=no
+      env: APPLICATION=EmptyExampleService DOCKER_IMAGE_TAG=swiftlang/swift:nightly-5.5-amazonlinux2 ONLY_RUN_SWIFT_LINT=no USE_APT_GET=no
+
+- os: linux
+      dist: bionic
+      sudo: required
+      services: docker
+      env: APPLICATION=PersistenceExampleService DOCKER_IMAGE_TAG=swiftlang/swift:nightly-5.5-amazonlinux2 ONLY_RUN_SWIFT_LINT=no USE_APT_GET=no
 
     # Use a docker image that contains the SwiftLint executable the verify the code against the linter.
     - os: linux
-      dist: xenial
+      dist: bionic
       sudo: required
       services: docker
       env: DOCKER_IMAGE_TAG=bytesguy/swiftlint:0.39.2 ONLY_RUN_SWIFT_LINT=yes USE_APT_GET=no
@@ -18,4 +24,4 @@ before_install:
   - docker pull $DOCKER_IMAGE_TAG
 
 script:
-  - docker run -v ${TRAVIS_BUILD_DIR}:/package ${DOCKER_IMAGE_TAG} /bin/bash -c "/package/CITests/run $ONLY_RUN_SWIFT_LINT $USE_APT_GET"
+  - docker run -v ${TRAVIS_BUILD_DIR}:/package ${DOCKER_IMAGE_TAG} /bin/bash -c "/package/CITests/run $APPLICATION $ONLY_RUN_SWIFT_LINT $USE_APT_GET"
