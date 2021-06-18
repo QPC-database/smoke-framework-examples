@@ -30,7 +30,13 @@ matrix:
       dist: bionic
       sudo: required
       services: docker
-      env: DOCKER_IMAGE_TAG=bytesguy/swiftlint:0.39.2 ONLY_RUN_SWIFT_LINT=yes USE_APT_GET=no
+      env: APPLICATION=EmptyExampleService DOCKER_IMAGE_TAG=bytesguy/swiftlint:0.39.2 ONLY_RUN_SWIFT_LINT=yes USE_APT_GET=no
+
+    - os: linux
+      dist: bionic
+      sudo: required
+      services: docker
+      env: APPLICATION=PersistenceExampleService DOCKER_IMAGE_TAG=bytesguy/swiftlint:0.39.2 ONLY_RUN_SWIFT_LINT=yes USE_APT_GET=no
 
 before_install:
   - docker pull $DOCKER_IMAGE_TAG
