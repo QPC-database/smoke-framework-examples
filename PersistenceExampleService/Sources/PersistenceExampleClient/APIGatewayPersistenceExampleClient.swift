@@ -141,7 +141,7 @@ public struct APIGatewayPersistenceExampleClient<InvocationReportingType: HTTPCl
             requestInput: AddCustomerEmailAddressOperationHTTPRequestInput(encodable: input),
             operation: PersistenceExampleModelOperations.addCustomerEmailAddress.rawValue,
             reporting: self.invocationsReporting.addCustomerEmailAddress,
-                                 errorType: PersistenceExampleError.self)
+            errorType: PersistenceExampleError.self)
     }
 
     /**
@@ -162,7 +162,7 @@ public struct APIGatewayPersistenceExampleClient<InvocationReportingType: HTTPCl
             requestInput: CreateCustomerPutOperationHTTPRequestInput(encodable: input),
             operation: PersistenceExampleModelOperations.createCustomerPut.rawValue,
             reporting: self.invocationsReporting.createCustomerPut,
-                                 errorType: PersistenceExampleError.self)
+            errorType: PersistenceExampleError.self)
     }
 
     /**
@@ -183,7 +183,7 @@ public struct APIGatewayPersistenceExampleClient<InvocationReportingType: HTTPCl
             requestInput: GetCustomerDetailsOperationHTTPRequestInput(encodable: input),
             operation: PersistenceExampleModelOperations.getCustomerDetails.rawValue,
             reporting: self.invocationsReporting.getCustomerDetails,
-                                 errorType: PersistenceExampleError.self)
+            errorType: PersistenceExampleError.self)
     }
 
     /**
@@ -204,6 +204,6 @@ public struct APIGatewayPersistenceExampleClient<InvocationReportingType: HTTPCl
             requestInput: ListCustomersGetOperationHTTPRequestInput(encodable: input),
             operation: PersistenceExampleModelOperations.listCustomersGet.rawValue,
             reporting: self.invocationsReporting.listCustomersGet,
-                                 errorType: PersistenceExampleError.self)
+            errorType: PersistenceExampleError.self)
     }
 }

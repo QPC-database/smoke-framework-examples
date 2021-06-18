@@ -17,6 +17,7 @@ import NIO
 /**
  Initializer for the PersistenceExampleService.
  */
+@main
 struct PersistenceExamplePerInvocationContextInitializer: PersistenceExamplePerInvocationContextInitializerProtocol {
     let dynamodbTableGenerator: AWSDynamoDBCompositePrimaryKeyTableGenerator
     let credentialsProvider: StoppableCredentialsProvider
