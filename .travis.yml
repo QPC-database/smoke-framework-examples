@@ -5,18 +5,6 @@ matrix:
       dist: bionic
       sudo: required
       services: docker
-      env: APPLICATION=EmptyExampleService DOCKER_IMAGE_TAG=swift:5.4.1-amazonlinux2 ONLY_RUN_SWIFT_LINT=no USE_APT_GET=no
-
-    - os: linux
-      dist: bionic
-      sudo: required
-      services: docker
-      env: APPLICATION=PersistenceExampleService DOCKER_IMAGE_TAG=swift:5.4.1-amazonlinux2 ONLY_RUN_SWIFT_LINT=no USE_APT_GET=no
-
-    - os: linux
-      dist: bionic
-      sudo: required
-      services: docker
       env: APPLICATION=EmptyExampleService DOCKER_IMAGE_TAG=swiftlang/swift:nightly-5.5-amazonlinux2 ONLY_RUN_SWIFT_LINT=no USE_APT_GET=no
 
     - os: linux
