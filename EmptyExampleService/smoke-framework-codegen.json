@@ -2,6 +2,10 @@
   "baseName" : "EmptyExample",
   "modelFilePath" : "Swagger.yaml",
   "generationType" : "serverUpdate",
+   "asyncAwaitGeneration": {
+    "client": "EXPERIMENTAL",
+    "server": "NONE"
+  },
   "operationStubGenerationRule" : {
     "mode" : "allFunctionsWithinContext"
   },

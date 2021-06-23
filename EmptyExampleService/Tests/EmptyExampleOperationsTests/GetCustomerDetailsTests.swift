@@ -9,11 +9,12 @@ import EmptyExampleModel
 
 class GetCustomerDetailsTests: XCTestCase {
 
-    func testGetCustomerDetails() {
+    func testGetCustomerDetails() throws {
         let input = GetCustomerDetailsRequest.__default
         let operationsContext = createOperationsContext()
     
-        XCTAssertEqual(try operationsContext.handleGetCustomerDetails(input: input), CustomerAttributes.__default)
+        let response = try operationsContext.handleGetCustomerDetails(input: input)
+        XCTAssertEqual(response, CustomerAttributes.__default)
     }
 
     static var allTests = [

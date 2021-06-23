@@ -12,17 +12,26 @@ import EmptyExampleModel
 import SmokeAWSCore
 import SmokeHTTPClient
 import NIO
+import SmokeAWSHttp
+
+#if compiler(>=5.5)
+import _SmokeAWSHttpConcurrency
+#endif
 
 /**
  Mock Client for the EmptyExample service by default returns the `__default` property of its return type.
  */
-public struct MockEmptyExampleClient: EmptyExampleClientProtocol {
+public struct MockEmptyExampleClient: EmptyExampleClientProtocol, MockClientProtocol {
     let eventLoop: EventLoop
     let typedErrorProvider: (Swift.Error) -> EmptyExampleError = { $0.asTypedError() }
     let addCustomerEmailAddressEventLoopFutureAsyncOverride: AddCustomerEmailAddressEventLoopFutureAsyncType?
+    let addCustomerEmailAddressFunctionOverride: AddCustomerEmailAddressFunctionType?
     let createCustomerPutEventLoopFutureAsyncOverride: CreateCustomerPutEventLoopFutureAsyncType?
+    let createCustomerPutFunctionOverride: CreateCustomerPutFunctionType?
     let getCustomerDetailsEventLoopFutureAsyncOverride: GetCustomerDetailsEventLoopFutureAsyncType?
+    let getCustomerDetailsFunctionOverride: GetCustomerDetailsFunctionType?
     let listCustomersGetEventLoopFutureAsyncOverride: ListCustomersGetEventLoopFutureAsyncType?
+    let listCustomersGetFunctionOverride: ListCustomersGetFunctionType?
 
     /**
      Initializer that creates an instance of this clients. The behavior of individual
@@ -31,15 +40,23 @@ public struct MockEmptyExampleClient: EmptyExampleClientProtocol {
     public init(
             eventLoop: EventLoop,
             addCustomerEmailAddressEventLoopFutureAsync: AddCustomerEmailAddressEventLoopFutureAsyncType? = nil,
+            addCustomerEmailAddress: AddCustomerEmailAddressFunctionType? = nil,
             createCustomerPutEventLoopFutureAsync: CreateCustomerPutEventLoopFutureAsyncType? = nil,
+            createCustomerPut: CreateCustomerPutFunctionType? = nil,
             getCustomerDetailsEventLoopFutureAsync: GetCustomerDetailsEventLoopFutureAsyncType? = nil,
-            listCustomersGetEventLoopFutureAsync: ListCustomersGetEventLoopFutureAsyncType? = nil) {
+            getCustomerDetails: GetCustomerDetailsFunctionType? = nil,
+            listCustomersGetEventLoopFutureAsync: ListCustomersGetEventLoopFutureAsyncType? = nil,
+            listCustomersGet: ListCustomersGetFunctionType? = nil) {
         self.eventLoop = eventLoop
         
         self.addCustomerEmailAddressEventLoopFutureAsyncOverride = addCustomerEmailAddressEventLoopFutureAsync
+        self.addCustomerEmailAddressFunctionOverride = addCustomerEmailAddress
         self.createCustomerPutEventLoopFutureAsyncOverride = createCustomerPutEventLoopFutureAsync
+        self.createCustomerPutFunctionOverride = createCustomerPut
         self.getCustomerDetailsEventLoopFutureAsyncOverride = getCustomerDetailsEventLoopFutureAsync
+        self.getCustomerDetailsFunctionOverride = getCustomerDetails
         self.listCustomersGetEventLoopFutureAsyncOverride = listCustomersGetEventLoopFutureAsync
+        self.listCustomersGetFunctionOverride = listCustomersGet
     }
 
     /**
@@ -53,16 +70,25 @@ public struct MockEmptyExampleClient: EmptyExampleClientProtocol {
      */
     public func addCustomerEmailAddress(
             input: EmptyExampleModel.AddCustomerEmailAddressRequest) -> EventLoopFuture<EmptyExampleModel.CustomerEmailAddressIdentity> {
-        if let addCustomerEmailAddressEventLoopFutureAsyncOverride = addCustomerEmailAddressEventLoopFutureAsyncOverride {
-            return addCustomerEmailAddressEventLoopFutureAsyncOverride(input)
-        }
-
-        let result = CustomerEmailAddressIdentity.__default
-        
-        let promise = self.eventLoop.makePromise(of: CustomerEmailAddressIdentity.self)
-        promise.succeed(result)
-        
-        return promise.futureResult
+        #if compiler(>=5.5)
+            if #available(macOS 12, iOS 15, tvOS 15, watchOS 8, *) {
+                return mockAsyncAwareEventLoopFutureExecuteWithInputWithOutput(
+                    input: input,
+                    defaultResult: CustomerEmailAddressIdentity.__default,
+                    eventLoop: self.eventLoop,
+                    functionOverride: self.addCustomerEmailAddressFunctionOverride,
+                    eventLoopFutureFunctionOverride: self.addCustomerEmailAddressEventLoopFutureAsyncOverride)
+            } else {
+                fatalError( "Swift >=5.5 unsupported below (macOS 12, iOS 15, tvOS 15, watchOS 8)")
+            }
+        #else
+            return mockEventLoopFutureExecuteWithInputWithOutput(
+                input: input,
+                defaultResult: CustomerEmailAddressIdentity.__default,
+                eventLoop: self.eventLoop,
+                functionOverride: self.addCustomerEmailAddressFunctionOverride,
+                eventLoopFutureFunctionOverride: self.addCustomerEmailAddressEventLoopFutureAsyncOverride)
+        #endif
     }
 
     /**
@@ -76,16 +102,25 @@ public struct MockEmptyExampleClient: EmptyExampleClientProtocol {
      */
     public func createCustomerPut(
             input: EmptyExampleModel.CreateCustomerRequest) -> EventLoopFuture<EmptyExampleModel.CreateCustomerPut200Response> {
-        if let createCustomerPutEventLoopFutureAsyncOverride = createCustomerPutEventLoopFutureAsyncOverride {
-            return createCustomerPutEventLoopFutureAsyncOverride(input)
-        }
-
-        let result = CreateCustomerPut200Response.__default
-        
-        let promise = self.eventLoop.makePromise(of: CreateCustomerPut200Response.self)
-        promise.succeed(result)
-        
-        return promise.futureResult
+        #if compiler(>=5.5)
+            if #available(macOS 12, iOS 15, tvOS 15, watchOS 8, *) {
+                return mockAsyncAwareEventLoopFutureExecuteWithInputWithOutput(
+                    input: input,
+                    defaultResult: CreateCustomerPut200Response.__default,
+                    eventLoop: self.eventLoop,
+                    functionOverride: self.createCustomerPutFunctionOverride,
+                    eventLoopFutureFunctionOverride: self.createCustomerPutEventLoopFutureAsyncOverride)
+            } else {
+                fatalError( "Swift >=5.5 unsupported below (macOS 12, iOS 15, tvOS 15, watchOS 8)")
+            }
+        #else
+            return mockEventLoopFutureExecuteWithInputWithOutput(
+                input: input,
+                defaultResult: CreateCustomerPut200Response.__default,
+                eventLoop: self.eventLoop,
+                functionOverride: self.createCustomerPutFunctionOverride,
+                eventLoopFutureFunctionOverride: self.createCustomerPutEventLoopFutureAsyncOverride)
+        #endif
     }
 
     /**
@@ -99,16 +134,25 @@ public struct MockEmptyExampleClient: EmptyExampleClientProtocol {
      */
     public func getCustomerDetails(
             input: EmptyExampleModel.GetCustomerDetailsRequest) -> EventLoopFuture<EmptyExampleModel.CustomerAttributes> {
-        if let getCustomerDetailsEventLoopFutureAsyncOverride = getCustomerDetailsEventLoopFutureAsyncOverride {
-            return getCustomerDetailsEventLoopFutureAsyncOverride(input)
-        }
-
-        let result = CustomerAttributes.__default
-        
-        let promise = self.eventLoop.makePromise(of: CustomerAttributes.self)
-        promise.succeed(result)
-        
-        return promise.futureResult
+        #if compiler(>=5.5)
+            if #available(macOS 12, iOS 15, tvOS 15, watchOS 8, *) {
+                return mockAsyncAwareEventLoopFutureExecuteWithInputWithOutput(
+                    input: input,
+                    defaultResult: CustomerAttributes.__default,
+                    eventLoop: self.eventLoop,
+                    functionOverride: self.getCustomerDetailsFunctionOverride,
+                    eventLoopFutureFunctionOverride: self.getCustomerDetailsEventLoopFutureAsyncOverride)
+            } else {
+                fatalError( "Swift >=5.5 unsupported below (macOS 12, iOS 15, tvOS 15, watchOS 8)")
+            }
+        #else
+            return mockEventLoopFutureExecuteWithInputWithOutput(
+                input: input,
+                defaultResult: CustomerAttributes.__default,
+                eventLoop: self.eventLoop,
+                functionOverride: self.getCustomerDetailsFunctionOverride,
+                eventLoopFutureFunctionOverride: self.getCustomerDetailsEventLoopFutureAsyncOverride)
+        #endif
     }
 
     /**
@@ -122,15 +166,106 @@ public struct MockEmptyExampleClient: EmptyExampleClientProtocol {
      */
     public func listCustomersGet(
             input: EmptyExampleModel.ListCustomersGetRequest) -> EventLoopFuture<EmptyExampleModel.ListCustomersResponse> {
-        if let listCustomersGetEventLoopFutureAsyncOverride = listCustomersGetEventLoopFutureAsyncOverride {
-            return listCustomersGetEventLoopFutureAsyncOverride(input)
-        }
-
-        let result = ListCustomersResponse.__default
-        
-        let promise = self.eventLoop.makePromise(of: ListCustomersResponse.self)
-        promise.succeed(result)
-        
-        return promise.futureResult
+        #if compiler(>=5.5)
+            if #available(macOS 12, iOS 15, tvOS 15, watchOS 8, *) {
+                return mockAsyncAwareEventLoopFutureExecuteWithInputWithOutput(
+                    input: input,
+                    defaultResult: ListCustomersResponse.__default,
+                    eventLoop: self.eventLoop,
+                    functionOverride: self.listCustomersGetFunctionOverride,
+                    eventLoopFutureFunctionOverride: self.listCustomersGetEventLoopFutureAsyncOverride)
+            } else {
+                fatalError( "Swift >=5.5 unsupported below (macOS 12, iOS 15, tvOS 15, watchOS 8)")
+            }
+        #else
+            return mockEventLoopFutureExecuteWithInputWithOutput(
+                input: input,
+                defaultResult: ListCustomersResponse.__default,
+                eventLoop: self.eventLoop,
+                functionOverride: self.listCustomersGetFunctionOverride,
+                eventLoopFutureFunctionOverride: self.listCustomersGetEventLoopFutureAsyncOverride)
+        #endif
     }
+
+    #if compiler(>=5.5)
+    /**
+     Invokes the AddCustomerEmailAddress operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated AddCustomerEmailAddressRequest object being passed to this operation.
+     - Returns: The CustomerEmailAddressIdentity object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: concurrency, customerEmailAddressAlreadyExists, customerEmailAddressLimitExceeded, unknownResource.
+     */
+    @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
+    public func addCustomerEmailAddress(
+            input: EmptyExampleModel.AddCustomerEmailAddressRequest) async throws -> EmptyExampleModel.CustomerEmailAddressIdentity {
+        return try await mockExecuteWithInputWithOutput(
+            input: input,
+            defaultResult: CustomerEmailAddressIdentity.__default,
+            eventLoop: self.eventLoop,
+            functionOverride: self.addCustomerEmailAddressFunctionOverride,
+            eventLoopFutureFunctionOverride: self.addCustomerEmailAddressEventLoopFutureAsyncOverride)
+    }
+
+    /**
+     Invokes the CreateCustomerPut operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated CreateCustomerRequest object being passed to this operation.
+     - Returns: The CreateCustomerPut200Response object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
+    public func createCustomerPut(
+            input: EmptyExampleModel.CreateCustomerRequest) async throws -> EmptyExampleModel.CreateCustomerPut200Response {
+        return try await mockExecuteWithInputWithOutput(
+            input: input,
+            defaultResult: CreateCustomerPut200Response.__default,
+            eventLoop: self.eventLoop,
+            functionOverride: self.createCustomerPutFunctionOverride,
+            eventLoopFutureFunctionOverride: self.createCustomerPutEventLoopFutureAsyncOverride)
+    }
+
+    /**
+     Invokes the GetCustomerDetails operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated GetCustomerDetailsRequest object being passed to this operation.
+     - Returns: The CustomerAttributes object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
+    public func getCustomerDetails(
+            input: EmptyExampleModel.GetCustomerDetailsRequest) async throws -> EmptyExampleModel.CustomerAttributes {
+        return try await mockExecuteWithInputWithOutput(
+            input: input,
+            defaultResult: CustomerAttributes.__default,
+            eventLoop: self.eventLoop,
+            functionOverride: self.getCustomerDetailsFunctionOverride,
+            eventLoopFutureFunctionOverride: self.getCustomerDetailsEventLoopFutureAsyncOverride)
+    }
+
+    /**
+     Invokes the ListCustomersGet operation returning aynchronously at a later time once the operation is complete.
+
+     - Parameters:
+         - input: The validated ListCustomersGetRequest object being passed to this operation.
+     - Returns: The ListCustomersResponse object to be passed back from the caller of this async operation.
+         Will be validated before being returned to caller.
+           The possible errors are: unknownResource.
+     */
+    @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
+    public func listCustomersGet(
+            input: EmptyExampleModel.ListCustomersGetRequest) async throws -> EmptyExampleModel.ListCustomersResponse {
+        return try await mockExecuteWithInputWithOutput(
+            input: input,
+            defaultResult: ListCustomersResponse.__default,
+            eventLoop: self.eventLoop,
+            functionOverride: self.listCustomersGetFunctionOverride,
+            eventLoopFutureFunctionOverride: self.listCustomersGetEventLoopFutureAsyncOverride)
+    }
+    #endif
 }
