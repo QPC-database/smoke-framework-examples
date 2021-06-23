@@ -141,7 +141,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
             requestInput: AddCustomerEmailAddressOperationHTTPRequestInput(encodable: input),
             operation: EmptyExampleModelOperations.addCustomerEmailAddress.rawValue,
             reporting: self.invocationsReporting.addCustomerEmailAddress,
-                                 errorType: EmptyExampleError.self)
+            errorType: EmptyExampleError.self)
     }
 
     /**
@@ -162,7 +162,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
             requestInput: CreateCustomerPutOperationHTTPRequestInput(encodable: input),
             operation: EmptyExampleModelOperations.createCustomerPut.rawValue,
             reporting: self.invocationsReporting.createCustomerPut,
-                                 errorType: EmptyExampleError.self)
+            errorType: EmptyExampleError.self)
     }
 
     /**
@@ -183,7 +183,7 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
             requestInput: GetCustomerDetailsOperationHTTPRequestInput(encodable: input),
             operation: EmptyExampleModelOperations.getCustomerDetails.rawValue,
             reporting: self.invocationsReporting.getCustomerDetails,
-                                 errorType: EmptyExampleError.self)
+            errorType: EmptyExampleError.self)
     }
 
     /**
@@ -204,6 +204,6 @@ public struct APIGatewayEmptyExampleClient<InvocationReportingType: HTTPClientCo
             requestInput: ListCustomersGetOperationHTTPRequestInput(encodable: input),
             operation: EmptyExampleModelOperations.listCustomersGet.rawValue,
             reporting: self.invocationsReporting.listCustomersGet,
-                                 errorType: EmptyExampleError.self)
+            errorType: EmptyExampleError.self)
     }
 }

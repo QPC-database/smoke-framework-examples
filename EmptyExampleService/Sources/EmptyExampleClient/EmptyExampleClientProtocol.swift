@@ -25,6 +25,14 @@ public protocol EmptyExampleClientProtocol {
             _ input: EmptyExampleModel.GetCustomerDetailsRequest) -> EventLoopFuture<EmptyExampleModel.CustomerAttributes>
     typealias ListCustomersGetEventLoopFutureAsyncType = (
             _ input: EmptyExampleModel.ListCustomersGetRequest) -> EventLoopFuture<EmptyExampleModel.ListCustomersResponse>
+    typealias AddCustomerEmailAddressFunctionType = (
+            _ input: EmptyExampleModel.AddCustomerEmailAddressRequest) throws -> EmptyExampleModel.CustomerEmailAddressIdentity
+    typealias CreateCustomerPutFunctionType = (
+            _ input: EmptyExampleModel.CreateCustomerRequest) throws -> EmptyExampleModel.CreateCustomerPut200Response
+    typealias GetCustomerDetailsFunctionType = (
+            _ input: EmptyExampleModel.GetCustomerDetailsRequest) throws -> EmptyExampleModel.CustomerAttributes
+    typealias ListCustomersGetFunctionType = (
+            _ input: EmptyExampleModel.ListCustomersGetRequest) throws -> EmptyExampleModel.ListCustomersResponse
 
     /**
      Invokes the AddCustomerEmailAddress operation returning immediately with an `EventLoopFuture` that will be completed at a later time.

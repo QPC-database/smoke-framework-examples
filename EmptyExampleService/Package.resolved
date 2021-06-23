@@ -6,17 +6,17 @@
         "repositoryURL": "https://github.com/swift-server/async-http-client.git",
         "state": {
           "branch": null,
-          "revision": "8ccba7328d178ac05a1a9803cf3f2c6660d2f826",
-          "version": "1.3.0"
+          "revision": "3fd0658dd91864099481b23740afd1757d1f0634",
+          "version": "1.4.0"
         }
       },
       {
         "package": "smoke-aws",
         "repositoryURL": "https://github.com/amzn/smoke-aws.git",
         "state": {
-          "branch": null,
-          "revision": "393ed524ef10d64e6e8d501297c61447c4f32155",
-          "version": "2.38.43"
+          "branch": "mock_and_mock_throwing_implementations",
+          "revision": "8c5364a178a62e5d1740b59d258a1717a7ac3002",
+          "version": null
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/amzn/smoke-framework.git",
         "state": {
           "branch": null,
-          "revision": "dafd6469667a1ef9754f01b9f46daa969e3e2025",
-          "version": "2.9.0"
+          "revision": "ce826fa5e1f900d784ce8d44f5db782b67edd587",
+          "version": "2.10.0"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/amzn/smoke-http.git",
         "state": {
           "branch": null,
-          "revision": "3fb6de3124df1857cb9f12aacc963b96c83e407a",
-          "version": "2.8.3"
+          "revision": "0f0ac49e96208b709a58a5e5d59d05bab44957aa",
+          "version": "2.8.5"
         }
       },
       {
@@ -53,15 +53,6 @@
           "branch": null,
           "revision": "3bea268b223651c4ab7b7b9ad62ef9b2d4143eb6",
           "version": "1.1.6"
-        }
-      },
-      {
-        "package": "swift-log",
-        "repositoryURL": "https://github.com/apple/swift-log.git",
-        "state": {
-          "branch": null,
-          "revision": "5d66f7ba25daf4f94100e7022febf3c75e37a6c7",
-          "version": "1.4.2"
         }
       },
       {
@@ -78,8 +69,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio.git",
         "state": {
           "branch": null,
-          "revision": "d161bf658780b209c185994528e7e24376cf7283",
-          "version": "2.29.0"
+          "revision": "d79e33308b0ac83326b0ead0ea6446e604b8162d",
+          "version": "2.30.0"
         }
       },
       {
@@ -87,8 +78,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio-extras.git",
         "state": {
           "branch": null,
-          "revision": "de1c80ad1fdff1ba772bcef6b392c3ef735f39a6",
-          "version": "1.8.0"
+          "revision": "f72c4688f89c28502105509186eadc49a49cb922",
+          "version": "1.10.0"
         }
       },
       {
@@ -96,8 +87,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio-ssl.git",
         "state": {
           "branch": null,
-          "revision": "6363cdf6d2fb863e82434f3c4618f4e896e37569",
-          "version": "2.13.1"
+          "revision": "9db7cee4b62c39160a6bd513a47a1ecdcceac18a",
+          "version": "2.14.0"
         }
       },
       {
@@ -105,8 +96,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio-transport-services.git",
         "state": {
           "branch": null,
-          "revision": "657537c2cf1845f8d5201ecc4e48f21f21841128",
-          "version": "1.10.0"
+          "revision": "39587bceccda72780e2a8a8c5e857e42a9df2fa8",
+          "version": "1.11.0"
         }
       },
       {

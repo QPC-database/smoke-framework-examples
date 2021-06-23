@@ -12,17 +12,22 @@ import EmptyExampleModel
 import SmokeAWSCore
 import SmokeHTTPClient
 import NIO
+import SmokeAWSHttp
 
 /**
  Mock Client for the EmptyExample service by default returns the `__default` property of its return type.
  */
-public struct MockEmptyExampleClient: EmptyExampleClientProtocol {
+public struct MockEmptyExampleClient: EmptyExampleClientProtocol, MockClientProtocol {
     let eventLoop: EventLoop
     let typedErrorProvider: (Swift.Error) -> EmptyExampleError = { $0.asTypedError() }
     let addCustomerEmailAddressEventLoopFutureAsyncOverride: AddCustomerEmailAddressEventLoopFutureAsyncType?
+    let addCustomerEmailAddressFunctionOverride: AddCustomerEmailAddressFunctionType?
     let createCustomerPutEventLoopFutureAsyncOverride: CreateCustomerPutEventLoopFutureAsyncType?
+    let createCustomerPutFunctionOverride: CreateCustomerPutFunctionType?
     let getCustomerDetailsEventLoopFutureAsyncOverride: GetCustomerDetailsEventLoopFutureAsyncType?
+    let getCustomerDetailsFunctionOverride: GetCustomerDetailsFunctionType?
     let listCustomersGetEventLoopFutureAsyncOverride: ListCustomersGetEventLoopFutureAsyncType?
+    let listCustomersGetFunctionOverride: ListCustomersGetFunctionType?
 
     /**
      Initializer that creates an instance of this clients. The behavior of individual
@@ -31,15 +36,23 @@ public struct MockEmptyExampleClient: EmptyExampleClientProtocol {
     public init(
             eventLoop: EventLoop,
             addCustomerEmailAddressEventLoopFutureAsync: AddCustomerEmailAddressEventLoopFutureAsyncType? = nil,
+            addCustomerEmailAddress: AddCustomerEmailAddressFunctionType? = nil,
             createCustomerPutEventLoopFutureAsync: CreateCustomerPutEventLoopFutureAsyncType? = nil,
+            createCustomerPut: CreateCustomerPutFunctionType? = nil,
             getCustomerDetailsEventLoopFutureAsync: GetCustomerDetailsEventLoopFutureAsyncType? = nil,
-            listCustomersGetEventLoopFutureAsync: ListCustomersGetEventLoopFutureAsyncType? = nil) {
+            getCustomerDetails: GetCustomerDetailsFunctionType? = nil,
+            listCustomersGetEventLoopFutureAsync: ListCustomersGetEventLoopFutureAsyncType? = nil,
+            listCustomersGet: ListCustomersGetFunctionType? = nil) {
         self.eventLoop = eventLoop
         
         self.addCustomerEmailAddressEventLoopFutureAsyncOverride = addCustomerEmailAddressEventLoopFutureAsync
+        self.addCustomerEmailAddressFunctionOverride = addCustomerEmailAddress
         self.createCustomerPutEventLoopFutureAsyncOverride = createCustomerPutEventLoopFutureAsync
+        self.createCustomerPutFunctionOverride = createCustomerPut
         self.getCustomerDetailsEventLoopFutureAsyncOverride = getCustomerDetailsEventLoopFutureAsync
+        self.getCustomerDetailsFunctionOverride = getCustomerDetails
         self.listCustomersGetEventLoopFutureAsyncOverride = listCustomersGetEventLoopFutureAsync
+        self.listCustomersGetFunctionOverride = listCustomersGet
     }
 
     /**
@@ -53,16 +66,12 @@ public struct MockEmptyExampleClient: EmptyExampleClientProtocol {
      */
     public func addCustomerEmailAddress(
             input: EmptyExampleModel.AddCustomerEmailAddressRequest) -> EventLoopFuture<EmptyExampleModel.CustomerEmailAddressIdentity> {
-        if let addCustomerEmailAddressEventLoopFutureAsyncOverride = addCustomerEmailAddressEventLoopFutureAsyncOverride {
-            return addCustomerEmailAddressEventLoopFutureAsyncOverride(input)
-        }
-
-        let result = CustomerEmailAddressIdentity.__default
-        
-        let promise = self.eventLoop.makePromise(of: CustomerEmailAddressIdentity.self)
-        promise.succeed(result)
-        
-        return promise.futureResult
+        return mockEventLoopFutureExecuteWithInputWithOutput(
+            input: input,
+            defaultResult: CustomerEmailAddressIdentity.__default,
+            eventLoop: self.eventLoop,
+            functionOverride: self.addCustomerEmailAddressFunctionOverride,
+            eventLoopFutureFunctionOverride: self.addCustomerEmailAddressEventLoopFutureAsyncOverride)
     }
 
     /**
@@ -76,16 +85,12 @@ public struct MockEmptyExampleClient: EmptyExampleClientProtocol {
      */
     public func createCustomerPut(
             input: EmptyExampleModel.CreateCustomerRequest) -> EventLoopFuture<EmptyExampleModel.CreateCustomerPut200Response> {
-        if let createCustomerPutEventLoopFutureAsyncOverride = createCustomerPutEventLoopFutureAsyncOverride {
-            return createCustomerPutEventLoopFutureAsyncOverride(input)
-        }
-
-        let result = CreateCustomerPut200Response.__default
-        
-        let promise = self.eventLoop.makePromise(of: CreateCustomerPut200Response.self)
-        promise.succeed(result)
-        
-        return promise.futureResult
+        return mockEventLoopFutureExecuteWithInputWithOutput(
+            input: input,
+            defaultResult: CreateCustomerPut200Response.__default,
+            eventLoop: self.eventLoop,
+            functionOverride: self.createCustomerPutFunctionOverride,
+            eventLoopFutureFunctionOverride: self.createCustomerPutEventLoopFutureAsyncOverride)
     }
 
     /**
@@ -99,16 +104,12 @@ public struct MockEmptyExampleClient: EmptyExampleClientProtocol {
      */
     public func getCustomerDetails(
             input: EmptyExampleModel.GetCustomerDetailsRequest) -> EventLoopFuture<EmptyExampleModel.CustomerAttributes> {
-        if let getCustomerDetailsEventLoopFutureAsyncOverride = getCustomerDetailsEventLoopFutureAsyncOverride {
-            return getCustomerDetailsEventLoopFutureAsyncOverride(input)
-        }
-
-        let result = CustomerAttributes.__default
-        
-        let promise = self.eventLoop.makePromise(of: CustomerAttributes.self)
-        promise.succeed(result)
-        
-        return promise.futureResult
+        return mockEventLoopFutureExecuteWithInputWithOutput(
+            input: input,
+            defaultResult: CustomerAttributes.__default,
+            eventLoop: self.eventLoop,
+            functionOverride: self.getCustomerDetailsFunctionOverride,
+            eventLoopFutureFunctionOverride: self.getCustomerDetailsEventLoopFutureAsyncOverride)
     }
 
     /**
@@ -122,15 +123,11 @@ public struct MockEmptyExampleClient: EmptyExampleClientProtocol {
      */
     public func listCustomersGet(
             input: EmptyExampleModel.ListCustomersGetRequest) -> EventLoopFuture<EmptyExampleModel.ListCustomersResponse> {
-        if let listCustomersGetEventLoopFutureAsyncOverride = listCustomersGetEventLoopFutureAsyncOverride {
-            return listCustomersGetEventLoopFutureAsyncOverride(input)
-        }
-
-        let result = ListCustomersResponse.__default
-        
-        let promise = self.eventLoop.makePromise(of: ListCustomersResponse.self)
-        promise.succeed(result)
-        
-        return promise.futureResult
+        return mockEventLoopFutureExecuteWithInputWithOutput(
+            input: input,
+            defaultResult: ListCustomersResponse.__default,
+            eventLoop: self.eventLoop,
+            functionOverride: self.listCustomersGetFunctionOverride,
+            eventLoopFutureFunctionOverride: self.listCustomersGetEventLoopFutureAsyncOverride)
     }
 }
