@@ -15,7 +15,20 @@ import NIO
 import SmokeAWSHttp
 
 /**
- Mock Client for the EmptyExample service that by default always throws from its methods.
+ Mock Client for the EmptyExample service.
+ 
+ At initialization, a function override directly returning a result - which can be async for Swift 5.5 or greater - and/or
+ an EventLoopFuture override returning an `EventLoopFuture` that will provide a result at a later time can be provided for each API
+ on this client.
+ 
+ If the function override is provided, the corresponding API on this client will return the result provided by
+ this override or will throw any error thrown by the override.
+ 
+ Otherwise, if the `EventLoopFuture` override is provided, the corresponding API on this client will return the result
+ provided by the `EventLoopFuture` or will throw any error that fails the future. This override is ignored if the first
+ function override is provided.
+ 
+ Otherwise, the API will throw the error provided at initialization.
  */
 public struct ThrowingEmptyExampleClient: EmptyExampleClientProtocol, MockThrowingClientProtocol {
     let error: EmptyExampleError
